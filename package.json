@@ -7,11 +7,16 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --mode development --open --port=4004",
-    "dev": "webpack-dev-server --mode production"
+    "dev": "tsc --watch"
   },
   "devDependencies": {
+    "css-loader": "^3.6.0",
+    "ts-loader": "^7.0.5",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "typescript": "^3.9.5"
   }
 }
