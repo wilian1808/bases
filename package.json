@@ -1,0 +1,8 @@
+{
+  "name": "bases",
+  "version": "1.0.0",
+  "description": "aplicacion web que convierte numeros a diferentes bases",
+  "main": "index.js",
+  "author": "wilian",
+  "license": "MIT"
+}
