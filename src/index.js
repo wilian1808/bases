@@ -13,7 +13,11 @@ CONVERTIR.addEventListener('submit', (e) => {
     else if (parseInt(bo) != 10 && parseInt(bf) == 10) {
         TEXT_RESPONSE.value = convertirOtroDecimal(parseFloat(no), parseFloat(bo));
     }
-    convertirOtroDecimal(parseInt(no), parseInt(bo));
+    else {
+        let resUno = convertirOtroDecimal(parseFloat(no), parseFloat(bo));
+        let resDos = convertirDecimalOtro(parseFloat(resUno), parseFloat(bf));
+        TEXT_RESPONSE.value = resDos;
+    }
 });
 // funcion que convierte cualquier numero en base 10 a cualquier base
 const convertirDecimalOtro = (numOriginal, baseFinal) => {
