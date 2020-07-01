@@ -8,6 +8,7 @@ CONVERTIR.addEventListener('submit', (e) => {
     let bo = document.getElementById('baseOriginal').value;
     let bf = document.getElementById('baseFinal').value;
     if (parseInt(bo) == 10 && parseInt(bf) != 10) {
+        console.log('de base 10 a base', bf);
         TEXT_RESPONSE.value = convertirDecimalOtro(parseFloat(no), parseFloat(bf));
     }
     else if (parseInt(bo) != 10 && parseInt(bf) == 10) {
@@ -24,32 +25,37 @@ const convertirDecimalOtro = (numOriginal, baseFinal) => {
     let numero = numOriginal.toString().split('.');
     let parteEntera = numero[0];
     let parteDecimal = numero[1];
+    let finalDecimal = '';
+    console.log(`${parteEntera} : ${parteDecimal}`);
     let response = [];
     let numeroEntero = parseInt(parteEntera);
+    console.log(`numeroEntero: ${numeroEntero}`);
+    console.log(`basefinal: ${baseFinal}`);
     // parte entera
     while (numeroEntero >= baseFinal) {
         response.unshift(NUMBER_BASES[numeroEntero % baseFinal]);
         numeroEntero = Math.floor(numeroEntero / baseFinal);
-        if (numeroEntero < baseFinal) {
-            response.unshift(NUMBER_BASES[numeroEntero]);
-        }
+    }
+    if (numeroEntero < baseFinal) {
+        response.unshift(NUMBER_BASES[numeroEntero]);
     }
     // parte decimal
     let numeroDecimal = parseFloat(`0.${parteDecimal}`);
     let responseDecimal = [];
-    for (let i = 0; i < parteDecimal.length * 2; i++) {
-        let res = (numeroDecimal * baseFinal).toString();
-        let nuevoNumero = res.split('.');
-        let dato = nuevoNumero[0];
-        responseDecimal.push(NUMBER_BASES[dato]);
-        numeroDecimal = parseFloat(`0.${nuevoNumero[1]}`);
+    if (parteDecimal != undefined) {
+        for (let i = 0; i < parteDecimal.length * 2; i++) {
+            let res = (numeroDecimal * baseFinal).toString();
+            let nuevoNumero = res.split('.');
+            let dato = nuevoNumero[0];
+            responseDecimal.push(NUMBER_BASES[dato]);
+            numeroDecimal = parseFloat(`0.${nuevoNumero[1]}`);
+        }
+        finalDecimal = `${responseDecimal.join('')}`;
     }
-    let finalDecimal = parseFloat(`0.${responseDecimal.join('')}`);
-    let finalEntero = parseInt(response.join(''));
-    let numeroTransformado = finalEntero + finalDecimal;
-    return numeroTransformado.toString();
+    let finalEntero = response.join('');
+    let final = (finalDecimal.length != 0) ? `${finalEntero}.${finalDecimal}` : `${finalEntero}`;
+    return final;
 };
-
 // funcion que convierte cualquier base a base 10
 const convertirOtroDecimal = (numeroOriginal, baseOriginal) => {
     let numero = numeroOriginal.toString().split('.');
