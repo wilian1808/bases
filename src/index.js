@@ -21,23 +21,51 @@ CONVERTIR.addEventListener('submit', (e) => {
 });
 // funcion que convierte cualquier numero en base 10 a cualquier base
 const convertirDecimalOtro = (numOriginal, baseFinal) => {
+    let numero = numOriginal.toString().split('.');
+    let parteEntera = numero[0];
+    let parteDecimal = numero[1];
     let response = [];
-    while (numOriginal >= baseFinal) {
-        response.unshift(NUMBER_BASES[numOriginal % baseFinal]);
-        numOriginal = Math.floor(numOriginal / baseFinal);
-        if (numOriginal < baseFinal) {
-            response.unshift(NUMBER_BASES[numOriginal]);
+    let numeroEntero = parseInt(parteEntera);
+    // parte entera
+    while (numeroEntero >= baseFinal) {
+        response.unshift(NUMBER_BASES[numeroEntero % baseFinal]);
+        numeroEntero = Math.floor(numeroEntero / baseFinal);
+        if (numeroEntero < baseFinal) {
+            response.unshift(NUMBER_BASES[numeroEntero]);
         }
     }
-    return response.join('');
+    // parte decimal
+    let numeroDecimal = parseFloat(`0.${parteDecimal}`);
+    let responseDecimal = [];
+    for (let i = 0; i < parteDecimal.length * 2; i++) {
+        let res = (numeroDecimal * baseFinal).toString();
+        let nuevoNumero = res.split('.');
+        let dato = nuevoNumero[0];
+        responseDecimal.push(NUMBER_BASES[dato]);
+        numeroDecimal = parseFloat(`0.${nuevoNumero[1]}`);
+    }
+    let finalDecimal = parseFloat(`0.${responseDecimal.join('')}`);
+    let finalEntero = parseInt(response.join(''));
+    let numeroTransformado = finalEntero + finalDecimal;
+    return numeroTransformado.toString();
 };
 // funcion que convierte cualquier base a base 10
 const convertirOtroDecimal = (numeroOriginal, baseOriginal) => {
+    let numero = numeroOriginal.toString().split('.');
+    let parteEntera = numero[0];
+    let parteDecimal = numero[1];
     let response = 0;
-    let numString = numeroOriginal.toString();
-    let numeroArray = numString.split('').reverse();
-    for (let i = 0; i < numeroArray.length; i++) {
-        let res = parseInt(numeroArray[i]) * Math.pow(baseOriginal, i);
+    let arrayEntero = parteEntera.split('').reverse();
+    let arrayDecimal = parteDecimal.split('');
+    // parte entera
+    for (let i = 0; i < arrayEntero.length; i++) {
+        let res = parseInt(arrayEntero[i]) * Math.pow(baseOriginal, i);
+        response += res;
+    }
+    // parte decimal
+    for (let i = 0; i < arrayDecimal.length; i++) {
+        let base = -1 * (i + 1);
+        let res = parseInt(arrayDecimal[i]) * Math.pow(baseOriginal, base);
         response += res;
     }
     return response.toString();

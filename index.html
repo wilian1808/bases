@@ -4,21 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./static/styles.css">
 </head>
 <body>
     
-    <h1>Convertidor de bases</h1>
-    
-    <form id="convertir">
-        <input type="number" max="16" min="2" id="baseOriginal" value="10">
-        <input type="text" placeholder="Numero" id="numeroOriginal">
-        <input type="number" max="16" min="2" id="baseFinal" value="10">
-        <input type="submit" value="convertir">
-    </form>
+    <main class="main">
+        
+        <h1 class="title">Convertidor de bases</h1>
+        <p class="description">Convertidor de bases creado para el curso de <span>Metodos numéricos</span> este programa puede convertir los numeros de una base n a otra base n tambien puedes convertir numeros que contengan el punto decimal</p>
+        
+        <form class="form" id="convertir">
+            <label class="label">
+                Base original: 
+                <input type="number" max="16" min="2" id="baseOriginal" value="10">
+            </label>
+            <input type="text" placeholder="Numero" id="numeroOriginal">
+            <label class="label">
+                Base final: 
+                <input type="number" max="16" min="2" id="baseFinal" value="10">
+            </label>
 
-    <br>
-    <input type="text" name="" id="numeroFinal" disabled>
+            <input type="submit" value="convertir">
+            
+            <input class="response" type="text" name="" id="numeroFinal" disabled>
 
+            <p class="bottom">el codigo completo esta: <a href="https://github.com/wilian1808/bases" _blank>aquí</a></p>
+        </form>
+        
+    </main>
+        
     <script src="./src/index.js"></script>
 </body>
 </html>
