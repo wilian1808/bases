@@ -1,0 +1,13 @@
+/* font converted using font-converter.net. thank you! */
+@font-face {
+  font-family: "LatoCode-Regular";
+  src: url("./fonts/LatoCode-Regular.eot"); /* IE9 Compat Modes */
+  src: url("./fonts/LatoCode-Regular.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("./fonts/LatoCode-Regular.otf") format("opentype"), /* Open Type Font */
+    url("./fonts/LatoCode-Regular.svg") format("svg"), /* Legacy iOS */
+    url("./fonts/LatoCode-Regular.ttf") format("truetype"), /* Safari, Android, iOS */
+    url("./fonts/LatoCode-Regular.woff") format("woff"), /* Modern Browsers */
+    url("./fonts/LatoCode-Regular.woff2") format("woff2"); /* Modern Browsers */
+  font-weight: normal;
+  font-style: normal;
+}

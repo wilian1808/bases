@@ -7,30 +7,47 @@
     <link rel="stylesheet" href="./static/styles.css">
 </head>
 <body>
+    <header class="header">
+        <div class="header__content">
+            <h1 class="header__title">Convertidor de bases</h1>
+        </div>
+    </header>
     
     <main class="main">
-        
-        <h1 class="title">Convertidor de bases</h1>
-        <p class="description">Convertidor de bases creado para el curso de <span>Metodos numéricos</span> este programa puede convertir los numeros de una base n a otra base n tambien puedes convertir numeros que contengan el punto decimal</p>
-        
-        <form class="form" id="convertir">
-            <label class="label">
-                Base original: 
-                <input type="number" max="16" min="2" id="baseOriginal" value="10">
-            </label>
-            <input type="text" placeholder="Numero" id="numeroOriginal">
-            <label class="label">
-                Base final: 
-                <input type="number" max="16" min="2" id="baseFinal" value="10">
-            </label>
-
-            <input type="submit" value="convertir">
+        <div class="main__content">
             
-            <input class="response" type="text" name="" id="numeroFinal" disabled>
+            <div class="description">    
+                <p class="description__parrafo">Convertidor de bases creado para el curso de <span>Metodos numéricos</span> este programa puede convertir los numeros de una base n a otra base n tambien puedes convertir numeros que contengan el punto decimal</p>
+                <br>
+                <p class="bottom">el codigo completo esta: <a href="https://github.com/wilian1808/bases" _blank>aquí</a></p>
+            </div>
+            
+            <form class="form" id="convertir">
+                <label class="form__label">
+                    <span>Base original: </span>
+                    <input class="form__label--input" type="number" max="16" min="2" id="baseOriginal" value="10">
+                </label>
 
-            <p class="bottom">el codigo completo esta: <a href="https://github.com/wilian1808/bases" _blank>aquí</a></p>
-        </form>
-        
+                <label class="form__label">
+                    <span>Número:</span>
+                    <input class="form__label--input" type="text" placeholder="Numero" id="numeroOriginal">
+                </label>
+
+                <label class="form__label">
+                    <span>Base final: </span>
+                    <input class="form__label--input" type="number" max="16" min="2" id="baseFinal" value="10">
+                </label>
+                
+                <input class="form__submit" type="submit" value="convertir">
+                
+                <label class="form__label">
+                    <span>Respuesta:</span>
+                    <input class="form__label--input" type="text" name="" id="numeroFinal" disabled>
+                </label>
+            
+            </form>
+            
+        </div>
     </main>
         
     <script src="./src/index.js"></script>

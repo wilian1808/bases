@@ -49,6 +49,7 @@ const convertirDecimalOtro = (numOriginal, baseFinal) => {
     let numeroTransformado = finalEntero + finalDecimal;
     return numeroTransformado.toString();
 };
+
 // funcion que convierte cualquier base a base 10
 const convertirOtroDecimal = (numeroOriginal, baseOriginal) => {
     let numero = numeroOriginal.toString().split('.');
