@@ -8,7 +8,6 @@ CONVERTIR.addEventListener('submit', (e) => {
     let bo = document.getElementById('baseOriginal').value;
     let bf = document.getElementById('baseFinal').value;
     if (parseInt(bo) == 10 && parseInt(bf) != 10) {
-        console.log('de base 10 a base', bf);
         TEXT_RESPONSE.value = convertirDecimalOtro(parseFloat(no), parseFloat(bf));
     }
     else if (parseInt(bo) != 10 && parseInt(bf) == 10) {
@@ -26,11 +25,8 @@ const convertirDecimalOtro = (numOriginal, baseFinal) => {
     let parteEntera = numero[0];
     let parteDecimal = numero[1];
     let finalDecimal = '';
-    console.log(`${parteEntera} : ${parteDecimal}`);
     let response = [];
     let numeroEntero = parseInt(parteEntera);
-    console.log(`numeroEntero: ${numeroEntero}`);
-    console.log(`basefinal: ${baseFinal}`);
     // parte entera
     while (numeroEntero >= baseFinal) {
         response.unshift(NUMBER_BASES[numeroEntero % baseFinal]);
@@ -54,7 +50,8 @@ const convertirDecimalOtro = (numOriginal, baseFinal) => {
     }
     let finalEntero = response.join('');
     let final = (finalDecimal.length != 0) ? `${finalEntero}.${finalDecimal}` : `${finalEntero}`;
-    return final;
+    let responseEdit = DeleteZero(final);
+    return responseEdit;
 };
 // funcion que convierte cualquier base a base 10
 const convertirOtroDecimal = (numeroOriginal, baseOriginal) => {
@@ -76,5 +73,18 @@ const convertirOtroDecimal = (numeroOriginal, baseOriginal) => {
         response += res;
     }
     return response.toString();
+};
+const DeleteZero = (number) => {
+    let newNumber = number.split('').reverse();
+    let recortar = true;
+    let indice = 0;
+    while (recortar) {
+        if (parseInt(newNumber[indice]) != 0) {
+            break;
+            recortar = false;
+        }
+        newNumber.shift();
+    }
+    return newNumber.reverse().join('');
 };
 //# sourceMappingURL=index.js.map
