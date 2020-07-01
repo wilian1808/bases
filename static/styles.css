@@ -130,3 +130,23 @@ body {
 .form__submit:active {
     transform: scale(.98);
 }
+
+.form_message {
+    width: 100%;
+    display: block;
+    border: none;
+    border: solid 1px #d92027;
+    padding: .7em;
+    font-size: 15px;
+    font-family: "LatoCode";
+    border-radius: 3px;
+    margin-bottom: 1em;
+    background-color: #ffffff;
+    color: #d92027;
+    text-align: center;
+    display: none;
+}
+
+.form_message--view {
+    display: block;
+}
