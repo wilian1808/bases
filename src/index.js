@@ -11,10 +11,10 @@ CONVERTIR.addEventListener('submit', (e) => {
         TEXT_RESPONSE.value = convertirDecimalOtro(parseFloat(no), parseFloat(bf));
     }
     else if (parseInt(bo) != 10 && parseInt(bf) == 10) {
-        TEXT_RESPONSE.value = convertirOtroDecimal(parseFloat(no), parseFloat(bo));
+        TEXT_RESPONSE.value = convertirOtroDecimal(no, parseFloat(bo));
     }
     else {
-        let resUno = convertirOtroDecimal(parseFloat(no), parseFloat(bo));
+        let resUno = convertirOtroDecimal(no, parseFloat(bo));
         let resDos = convertirDecimalOtro(parseFloat(resUno), parseFloat(bf));
         TEXT_RESPONSE.value = resDos;
     }
@@ -58,22 +58,69 @@ const convertirOtroDecimal = (numeroOriginal, baseOriginal) => {
     let numero = numeroOriginal.toString().split('.');
     let parteEntera = numero[0];
     let parteDecimal = numero[1];
-    let response = 0;
     let arrayEntero = parteEntera.split('').reverse();
     let arrayDecimal = parteDecimal.split('');
+    let response = 0;
     // parte entera
     for (let i = 0; i < arrayEntero.length; i++) {
-        let res = parseInt(arrayEntero[i]) * Math.pow(baseOriginal, i);
+        let res = 0;
+        switch (arrayEntero[i]) {
+            case 'a' || 'A':
+                res = 10 * Math.pow(baseOriginal, i);
+                break;
+            case 'b' || 'B':
+                res = 11 * Math.pow(baseOriginal, i);
+                break;
+            case 'c' || 'C':
+                res = 12 * Math.pow(baseOriginal, i);
+                break;
+            case 'b' || 'D':
+                res = 13 * Math.pow(baseOriginal, i);
+                break;
+            case 'e' || 'E':
+                res = 14 * Math.pow(baseOriginal, i);
+                break;
+            case 'f' || 'F':
+                res = 15 * Math.pow(baseOriginal, i);
+                break;
+            default:
+                res = parseInt(arrayEntero[i]) * Math.pow(baseOriginal, i);
+                break;
+        }
         response += res;
     }
     // parte decimal
     for (let i = 0; i < arrayDecimal.length; i++) {
         let base = -1 * (i + 1);
-        let res = parseInt(arrayDecimal[i]) * Math.pow(baseOriginal, base);
+        let res = 0;
+        switch (arrayDecimal[i]) {
+            case 'a' || 'A':
+                res = 10 * Math.pow(baseOriginal, base);
+                break;
+            case 'b' || 'B':
+                res = 11 * Math.pow(baseOriginal, base);
+                break;
+            case 'c' || 'C':
+                res = 12 * Math.pow(baseOriginal, base);
+                break;
+            case 'b' || 'D':
+                res = 13 * Math.pow(baseOriginal, base);
+                break;
+            case 'e' || 'E':
+                res = 14 * Math.pow(baseOriginal, base);
+                break;
+            case 'f' || 'F':
+                res = 15 * Math.pow(baseOriginal, base);
+                break;
+            default:
+                res = parseInt(arrayDecimal[i]) * Math.pow(baseOriginal, base);
+                break;
+        }
         response += res;
     }
     return response.toString();
 };
+// funcion que recorta los zero del lado rerecho solo del decimal
 const DeleteZero = (number) => {
     let newNumber = number.split('').reverse();
     let recortar = true;
