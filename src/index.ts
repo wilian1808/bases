@@ -9,14 +9,16 @@ CONVERTIR.addEventListener('submit', (e) => {
     let no = (<HTMLInputElement>document.getElementById('numeroOriginal')).value;
     let bo = (<HTMLInputElement>document.getElementById('baseOriginal')).value;
     let bf = (<HTMLInputElement>document.getElementById('baseFinal')).value;
-    
+
     if (parseInt(bo) == 10 && parseInt(bf) != 10) {
         TEXT_RESPONSE.value = convertirDecimalOtro(parseFloat(no), parseFloat(bf));
     } else if (parseInt(bo) != 10 && parseInt(bf) == 10) {
         TEXT_RESPONSE.value = convertirOtroDecimal(parseFloat(no), parseFloat(bo));
+    } else {        
+        let resUno = convertirOtroDecimal(parseFloat(no), parseFloat(bo));
+        let resDos = convertirDecimalOtro(parseFloat(resUno), parseFloat(bf));
+        TEXT_RESPONSE.value = resDos;
     }
-
-    convertirOtroDecimal(parseInt(no), parseInt(bo));
 })
 
 // funcion que convierte cualquier numero en base 10 a cualquier base
